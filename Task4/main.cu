@@ -11,7 +11,7 @@ __global__ void warmup_kernel() {
 
 void warmup() {
     for (int i = 0; i < 8; ++i)
-        warmup_kernel<<<1, 256>>>();
+        warmup_kernel<<<1024, 1024>>>();
 }
 
 int main() {
