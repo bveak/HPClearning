@@ -1,5 +1,5 @@
-#ifndef ADD_CUH
-#define ADD_CUH
+#ifndef DEBUBBLE_CUH
+#define DEBUBBLE_CUH
 
 #include <vector>
 #include <cstddef>
