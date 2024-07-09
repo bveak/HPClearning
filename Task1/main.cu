@@ -11,12 +11,12 @@ __global__ void warmup_kernel() {
 
 void warmup() {
     for (int i = 0; i < 8; ++i)
-        warmup_kernel<<<1, 256>>>();
+        warmup_kernel<<<256, 256>>>();
 }
 
 int main() {
     warmup();
-    std::size_t n = 5000;
+    std::size_t n = 50000;
     std::size_t dim = 16384;
     std::mt19937 rnd((0x3ac2ed7b));
     float* input = (float*)malloc(n * dim * sizeof(float));
