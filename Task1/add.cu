@@ -6,9 +6,10 @@
 __global__ void reduce_sum(const float* input_vecs, std::size_t n, std::size_t dim, float* output_vec) {
     int i = blockDim.x * blockIdx.x + threadIdx.x;
     if (i < dim) {
-        output_vec[i] = 0;
+        float sum = 0;
         for (int j = 0; j < n; ++j) 
-            output_vec[i] += input_vecs[j * dim + i];
+            sum += input_vecs[j * dim + i];
+        output_vec[i] = sum;
     }
 }
 
