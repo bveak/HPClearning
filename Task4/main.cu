@@ -29,7 +29,6 @@ void warmup() {
 }
 
 int main() {
-    warmup();
     std::size_t n = 64 * 1024 * 1024;
     std::vector <int> a(n);
     std::mt19937 rnd(0x3ac2ed7b);
@@ -37,6 +36,7 @@ int main() {
         a[i] = rnd();
     for (int i = rnd() % n; i; --i)
         a[rnd() % n] = 0;
+    warmup();
     float total_time = 0;
     int TestCount = 10;
     std::vector <int> b;

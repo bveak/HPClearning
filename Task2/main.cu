@@ -30,7 +30,6 @@ void warmup() {
 }
 
 int main() {
-    warmup();
     std::size_t n = 1024, m = 1024, k = 1024;
     std::mt19937 rnd((0x3ac2ed7b));
     float* A = (float*)malloc(n * m * sizeof(float));
@@ -40,6 +39,7 @@ int main() {
     for (int i = 0; i < n * n; ++i)
         B[i] = rnd() / 1e7;
     float* output = (float*)malloc(n * k * sizeof(float));
+    warmup();
     float total_time = 0;
     int TestCount = 10;
     for (int i = 0; i < TestCount; ++i) {

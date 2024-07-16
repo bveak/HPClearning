@@ -29,7 +29,6 @@ void warmup() {
 }
 
 int main() {
-    warmup();
     std::size_t n = 50000;
     std::size_t dim = 16384;
     std::mt19937 rnd((0x3ac2ed7b));
@@ -38,6 +37,7 @@ int main() {
         input[i] = rnd() / 1e4;
     float* output = (float*)malloc(dim * sizeof(float));
     float total_time = 0;
+    warmup();
     int TestCount = 10;
     for (int i = 0; i < TestCount; ++i) {
         reduce(total_time, input, n, dim, output);
