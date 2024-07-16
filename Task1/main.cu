@@ -4,14 +4,28 @@
 #include <random>
 #include <cmath>
 
-__global__ void warmup_kernel() {
+__global__ void warmup_kernel(int* test) {
     int i = 1, j = 1;
     i += j;
+    if (blockIdx.x == threadIdx.x)
+        ++test[blockIdx.x];
 }
 
 void warmup() {
+    int* test = NULL;
+    assert(cudaMalloc((void**)&test, 1024 * sizeof(int)) == cudaSuccess);
+    int* rnd = (int*)malloc(1024 * sizeof(int));
+    unsigned rndval = 1;
+    for (int i = 0; i < 1024; ++i) {
+        rnd[i] = rndval;
+        rndval ^= rndval << 3;
+        rndval ^= rndval >> 5;
+        rndval ^= rndval << 17;
+    }
+    assert(cudaMemcpy(test, rnd, 1024 * sizeof(int), cudaMemcpyHostToDevice) == cudaSuccess);
     for (int i = 0; i < 8; ++i)
-        warmup_kernel<<<1024, 1024>>>();
+        warmup_kernel<<<1024, 1024>>>(test);
+    assert(cudaMemcpy(rnd, test, 1024 * sizeof(int), cudaMemcpyDeviceToHost) == cudaSuccess);
 }
 
 int main() {
