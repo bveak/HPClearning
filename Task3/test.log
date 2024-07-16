@@ -1,0 +1,43 @@
+== n = 1 << 24 ==
+
+```
+GPU time(ms): 576.930664
+GPU time(ms): 46.832863
+GPU time(ms): 46.105343
+GPU time(ms): 43.509888
+GPU time(ms): 43.440865
+GPU time(ms): 43.516830
+GPU time(ms): 43.405502
+GPU time(ms): 43.624702
+GPU time(ms): 43.448193
+GPU time(ms): 43.432034
+GPU average time(ms): 44.238838
+thrust average time(ms): 8.325500
+CPU time(ms): 1618.460000
+Accepted!!
+```
+
+速度是 thrust::sort 的五分之一，感觉很快了。
+
+如果使用 __shfl 操作应该能做得更快，暂时不写了。
+
+== n = 1 << 28 ==
+
+```
+GPU time(ms): 1141.533447
+GPU time(ms): 1108.321045
+GPU time(ms): 1108.190918
+GPU time(ms): 1110.149780
+GPU time(ms): 1108.800537
+GPU time(ms): 1107.874023
+GPU time(ms): 1109.418457
+GPU time(ms): 1107.905029
+GPU time(ms): 1109.067383
+GPU time(ms): 1109.645142
+GPU average time(ms): 1108.937378
+thrust average time(ms): 121.992966
+CPU ommited
+Accepted!!
+```
+
+还是有点慢。不知道 thrust 咋实现的。
