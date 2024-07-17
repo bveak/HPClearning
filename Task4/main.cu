@@ -29,7 +29,7 @@ void warmup() {
 }
 
 int main() {
-    std::size_t n = 64 * 1024 * 1024;
+    std::size_t n = 1 << 28;
     std::vector <int> a(n);
     std::mt19937 rnd(0x3ac2ed7b);
     for (int i = 0; i < n; ++i) 
@@ -37,15 +37,19 @@ int main() {
     for (int i = rnd() % n; i; --i)
         a[rnd() % n] = 0;
     warmup();
-    float total_time = 0;
+    float total_time = 0, max_time = 0, min_time = 1e5;
     int TestCount = 10;
     std::vector <int> b;
     int gpucount = 0;
     for (int i = 0; i < TestCount; ++i) {
         b = a;
-        gpucount = debubble(total_time, b);
+        float current_time = 0;
+        gpucount = debubble(current_time, b);
+        max_time = std::max(max_time, current_time);
+        min_time = std::min(min_time, current_time);
+        total_time += current_time;
     }
-    printf("GPU average time(ms): %f\n", total_time / TestCount);
+    printf("GPU average time(ms): %f\n", (total_time - max_time - min_time) / (TestCount - 2));
     time_t start = clock();
     int count = 0;
     for (int i = 0; i < n; ++i)
