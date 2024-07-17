@@ -1,0 +1,15 @@
+== n = 1 << 28 ==
+
+GPU time(ms): 44.929729
+GPU time(ms): 38.374046
+GPU time(ms): 39.002880
+GPU time(ms): 38.506847
+GPU time(ms): 38.662720
+GPU time(ms): 39.237247
+GPU time(ms): 38.508926
+GPU time(ms): 38.534367
+GPU time(ms): 38.423008
+GPU time(ms): 39.546463
+GPU average time(ms): 38.802811
+CPU time(ms): 1294.743000
+Accepted!!
